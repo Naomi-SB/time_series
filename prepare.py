@@ -26,3 +26,10 @@ def sales_tot(df):
 def rename(df):
     df=  df.rename(columns={'sale_id' : 'upc_per_store'})
     return df
+
+
+def prep_opsd_data(df):
+    df.columns = [column.replace('+','_').lower() for column in df]
+    df.date=pd.to_datetime(df.date)
+    df = df.fillna(0)
+    return df
